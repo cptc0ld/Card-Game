@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const fs = require("fs");
-const util = require("util");
-let userdata;
 const { update } = require("../src/db");
 
 router.get("/vocab", async (req, res) => {
