@@ -1,5 +1,21 @@
 $(document).ready(function () {
 	getNextCard();
+	getCount();
+
+	function getCount() {
+		$.ajax({
+			url: "/api/vocabcount",
+			type: "GET",
+			success: function (data) {
+				$(".mastered").text(data["masteredcount"]);
+				$(".learn").text(data["learncount"]);
+				$(".review").text(data["reviewcount"]);
+			},
+			error: function (err) {
+				console.log("count-error");
+			},
+		});
+	}
 	function getNextCard() {
 		$.ajax({
 			url: "/api/vocab",
@@ -7,6 +23,7 @@ $(document).ready(function () {
 			success: function (data) {
 				let index = Math.floor(Math.random() * data.count);
 				$(".index").text(index);
+				$(".type").text(data["all"][index]["type"]);
 				$(".card").text(data["all"][index]["word"]);
 				$(".back-card").text(data["all"][index]["explanation"]);
 				$(".back-card").css("display", "none");
@@ -16,10 +33,6 @@ $(document).ready(function () {
 			},
 		});
 	}
-
-	$(".next-card").on("click", function () {
-		getNextCard();
-	});
 
 	$(".answer").on("click", function () {
 		$(".back-card").css("display", "block");
@@ -42,6 +55,7 @@ $(document).ready(function () {
 			},
 		});
 		getNextCard();
+		getCount();
 	});
 	$(".not-sure").on("click", function () {
 		let indexdata = {};
@@ -60,5 +74,6 @@ $(document).ready(function () {
 			},
 		});
 		getNextCard();
+		getCount();
 	});
 });

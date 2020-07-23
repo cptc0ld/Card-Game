@@ -2,7 +2,7 @@ const router = require("express").Router();
 const fs = require("fs");
 const { update } = require("../src/db");
 
-router.get("/vocab", async (req, res) => {
+router.get("/vocab", (req, res) => {
 	const data = fs.readFileSync(".\\src\\userdata.json", {
 		encoding: "utf8",
 		flag: "r",
@@ -125,4 +125,17 @@ router.post("/vocabUpdate", (req, res) => {
 	res.json(commonWords);
 });
 
+router.get("/vocabcount", (req, res) => {
+	const type = req.params.type;
+	const data = fs.readFileSync(".\\src\\userdata.json", {
+		encoding: "utf8",
+		flag: "r",
+	});
+	commonWords = JSON.parse(data);
+	res.json({
+		masteredcount: commonWords.mastered.length,
+		learncount: commonWords.learn.length,
+		reviewcount: commonWords.review.length,
+	});
+});
 module.exports = router;
