@@ -1,0 +1,60 @@
+{
+	"count": 3,
+	"all": [
+		{
+			"index": 0,
+			"word": "brief",
+			"explanation": "adjective: short (about time, not length)Before we begin class, let me briefly introduce myself.This word has other definitions, but this is the most important one to study",
+			"type": "mastered"
+		},
+		{
+			"index": 1,
+			"word": "adjust",
+			"explanation": "verb: to change or move a little and make better or more accurate The colors on this TV screen are wrong. I'll adjust them.",
+			"type": "learn"
+		},
+		{
+			"index": 2,
+			"word": "despite",
+			"explanation": "preposition: even with (when an event is surprising because of some difficulty) We enjoyed our vacation despite the rain.",
+			"type": "mastered"
+		}
+	],
+	"new": [
+		{
+			"index": 0,
+			"word": "brief",
+			"explanation": "adjective: short (about time, not length)Before we begin class, let me briefly introduce myself.This word has other definitions, but this is the most important one to study"
+		},
+		{
+			"index": 1,
+			"word": "adjust",
+			"explanation": "verb: to change or move a little and make better or more accurate The colors on this TV screen are wrong. I'll adjust them."
+		},
+		{
+			"index": 2,
+			"word": "despite",
+			"explanation": "preposition: even with (when an event is surprising because of some difficulty) We enjoyed our vacation despite the rain."
+		}
+	],
+	"mastered": [
+		{
+			"index": "0",
+			"word": "brief",
+			"explanation": "adjective: short (about time, not length)Before we begin class, let me briefly introduce myself.This word has other definitions, but this is the most important one to study"
+		},
+		{
+			"index": "2",
+			"word": "despite",
+			"explanation": "preposition: even with (when an event is surprising because of some difficulty) We enjoyed our vacation despite the rain."
+		}
+	],
+	"review": [],
+	"learn": [
+		{
+			"index": "1",
+			"word": "adjust",
+			"explanation": "verb: to change or move a little and make better or more accurate The colors on this TV screen are wrong. I'll adjust them."
+		}
+	]
+}
