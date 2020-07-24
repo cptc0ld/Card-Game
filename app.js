@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("static"));
 app.set("view engine", "ejs");
+app.set("views", "views");
 //route middlewares
 app.use("/", indexRoute);
 app.use("/api", vocabRoute);

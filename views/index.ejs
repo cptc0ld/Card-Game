@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include ('partials/head.ejs') %>
+	</head>
+	<body class="container">
+		<header>
+			<%- include ('partials/header.ejs') %>
+		</header>
+
+		<main>
+			<canvas
+				id="myChart"
+				style="position: relative; height: 10vh; width: 20vw;"
+			></canvas>
+			</div>
+			<div class="jumbotron">
+				<div class="centered">
+					<section class="cards">
+						<div class="index"></div>
+						<div class="details">
+							<b>
+									<div class="card"></div>
+							</b>
+						  <div class="type"></div>
+							
+						</div>
+						<div class="back-card"></div>
+					</section>
+				</div>
+			</div>
+		</main>
+		<button class="answer">Show Answer</button>
+		<button class="sure">Correct</button>
+		<button class="not-sure">Incorrect</button>
+		
+		<button class="show-all">Show All Words</button>
+
+		<div class="info" style="display: none;"></div>
+		<footer>
+			<%- include ('partials/footer.ejs') %>
+		</footer>
+	</body>
+</html>

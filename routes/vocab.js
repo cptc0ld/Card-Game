@@ -7,7 +7,7 @@ router.get("/vocab", (req, res) => {
 		encoding: "utf8",
 		flag: "r",
 	});
-	commonWords = JSON.parse(data);
+	let commonWords = JSON.parse(data);
 	res.json(commonWords);
 });
 
@@ -16,7 +16,7 @@ router.post("/vocabUpdate", (req, res) => {
 		encoding: "utf8",
 		flag: "r",
 	});
-	commonWords = JSON.parse(data);
+	let commonWords = JSON.parse(data);
 	let wordIndex = req.body.index;
 	let wordName;
 	let wordExplanation;
@@ -126,16 +126,47 @@ router.post("/vocabUpdate", (req, res) => {
 });
 
 router.get("/vocabcount", (req, res) => {
-	const type = req.params.type;
 	const data = fs.readFileSync(".\\src\\userdata.json", {
 		encoding: "utf8",
 		flag: "r",
 	});
-	commonWords = JSON.parse(data);
+	let commonWords = JSON.parse(data);
 	res.json({
+		newcount:
+			commonWords.count -
+			commonWords.mastered.length -
+			commonWords.learn.length -
+			commonWords.review.length,
 		masteredcount: commonWords.mastered.length,
 		learncount: commonWords.learn.length,
 		reviewcount: commonWords.review.length,
+	});
+});
+
+router.get("/vocabreset", (req, res) => {
+	const data = fs.readFileSync(".\\data\\data.json", {
+		encoding: "utf8",
+		flag: "r",
+	});
+	fs.writeFile(".\\src\\userdata.json", data, (err, data) => {
+		if (err) throw err;
+	});
+	res.json({
+		code: 0,
+	});
+});
+
+router.get("/indivocab", (req, res) => {
+	const data = fs.readFileSync(".\\src\\userdata.json", {
+		encoding: "utf8",
+		flag: "r",
+	});
+	let commonWords = JSON.parse(data);
+	console.log(commonWords);
+	res.json({
+		mastered: commonWords.mastered,
+		review: commonWords.review,
+		learn: commonWords.learn,
 	});
 });
 module.exports = router;
