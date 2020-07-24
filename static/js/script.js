@@ -19,6 +19,7 @@ $(document).ready(function () {
 		});
 	}
 	function getNextCard() {
+		$(".info").fadeOut();
 		$(".back-card").fadeOut("slow", function () {
 			$.ajax({
 				url: "/api/vocab",
@@ -38,6 +39,41 @@ $(document).ready(function () {
 		});
 	}
 
+	function showAll() {
+		$.ajax({
+			url: "/api/indivocab",
+			type: "get",
+			async: false,
+			dataType: "json ",
+			success: function (data) {
+				let mastered = data["mastered"];
+				let review = data["review"];
+				let learn = data["learn"];
+				let masteredtext = "Mastered: ";
+				mastered.forEach((element) => {
+					masteredtext += element.word;
+					masteredtext += " ";
+				});
+				let reviewtext = "Review: ";
+				review.forEach((element) => {
+					reviewtext += element.word;
+					reviewtext += " ";
+				});
+				learntext = "Learn: ";
+				learn.forEach((element) => {
+					learntext += element.word;
+					learntext += " ";
+				});
+				$(".info").html(
+					masteredtext + "<br>" + reviewtext + "<br>" + learntext
+				);
+				$(".info").fadeIn("slow");
+			},
+			error: function (err) {
+				console.log("error");
+			},
+		});
+	}
 	$(".answer").on("click", function () {
 		$(".back-card").fadeIn("slow");
 	});
@@ -83,44 +119,12 @@ $(document).ready(function () {
 		getCount();
 	});
 	$(".show-all").on("click", function () {
-		$.ajax({
-			url: "/api/indivocab",
-			type: "get",
-			async: false,
-			dataType: "json ",
-			success: function (data) {
-				let mastered = data["mastered"];
-				let review = data["review"];
-				let learn = data["learn"];
-				let masteredtext = "Mastered: ";
-				mastered.forEach((element) => {
-					masteredtext += element.word;
-					masteredtext += " ";
-				});
-				let reviewtext = "Review: ";
-				review.forEach((element) => {
-					reviewtext += element.word;
-					reviewtext += " ";
-				});
-				learntext = "Learn: ";
-				learn.forEach((element) => {
-					learntext += element.word;
-					learntext += " ";
-				});
-				$(".info").html(
-					masteredtext + "<br>" + reviewtext + "<br>" + learntext
-				);
-				$(".info").fadeIn("slow");
-			},
-			error: function (err) {
-				console.log("error");
-			},
-		});
+		showAll();
 	});
 	$(".reset").on("click", function () {
 		$.ajax({
 			url: "/api/vocabreset",
-			type: "get",
+			type: "POST",
 			async: false,
 			dataType: "json ",
 			success: function (data) {

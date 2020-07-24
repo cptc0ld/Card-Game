@@ -143,7 +143,7 @@ router.get("/vocabcount", (req, res) => {
 	});
 });
 
-router.get("/vocabreset", (req, res) => {
+router.post("/vocabreset", (req, res) => {
 	const data = fs.readFileSync(".\\data\\data.json", {
 		encoding: "utf8",
 		flag: "r",
